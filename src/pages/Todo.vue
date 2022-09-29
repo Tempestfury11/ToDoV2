@@ -8,7 +8,7 @@
     >
 
       <q-item
-      v-for="task in tasks"
+      v-for="(task, index) in tasks"
       :key="task.title"
       @click="task.done = !task.done"
       :class="{'done bg-blue-1' : task.done}"
@@ -33,7 +33,13 @@
         <q-item-section
         v-if="task.done"
         side>
-          x
+        <q-btn
+        @click.stop=""deleteTask()
+        flat
+        round
+        dense
+        color="primary"
+        icon="delete" />
         </q-item-section>
 
       </q-item>

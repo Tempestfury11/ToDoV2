@@ -34,7 +34,7 @@
         v-if="task.done"
         side>
         <q-btn
-        @click.stop=""deleteTask()
+        @click.stop="deleteTask(index)"
         flat
         round
         dense
@@ -68,13 +68,27 @@ export default {
         },
       ]
     }
+  },
+  methods:{
+    deleteTask(index){
+      function confirm () {
+      $q.dialog({
+        title: 'Confirm',
+        message: 'Really delete?',
+        cancel: true,
+        persistent: true
+      }).onOk(() => {
+        this.tasks.splice(index, 1)
+      })
+    }
+    }
   }
 }
 </script>
 
 <style lang="scss">
 .done{
-  .q-item_label {
+  .q-item__label {
     text-decoration: line-through;
     color: #bbb;
   }

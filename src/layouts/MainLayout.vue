@@ -51,7 +51,6 @@
             exact
             clickable
             v-ripple>
-
               <q-item-section avatar>
                 <q-icon name="help" />
               </q-item-section>

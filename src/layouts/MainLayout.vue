@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header>
       <q-toolbar>
         <q-btn
           flat
@@ -11,12 +11,15 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
+
+      <div class="q-px-lg q-pt-xl q-mb-md">
+        <div class="text-h3">Todo</div>
+        <div class="textsubtitle1">{{todaysDate}}</div>
+        <q-img src="https://i.postimg.cc/qqDG9Dvh/circle-ga8972debb-1920.jpg"
+        class="header-image absolute-top" />
+      </div>
+
     </q-header>
 
     <q-drawer
@@ -46,6 +49,7 @@
 </template>
 
 <script>
+import {date} from "quasar"
 import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
 
@@ -98,7 +102,7 @@ export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    EssentialLink
+    EssentialLink,
   },
 
   setup () {
@@ -111,6 +115,22 @@ export default defineComponent({
         leftDrawerOpen.value = !leftDrawerOpen.value
       }
     }
-  }
+  },
+
+  computed: {
+    todaysDate(){
+      let timeStamp = Date.now()
+      return date.formatDate(timeStamp, 'dddd D MMMM YYYY')
+    }
+  },
 })
 </script>
+
+<style lang="scss">
+  .header-image {
+    height: 100%;
+    z-index: -1;
+    opacity: 0.2;
+    filter: grayscale(100%);
+  }
+</style>
